@@ -1,0 +1,35 @@
+.custom-modal-width {
+  width: 700px !important;
+  max-width: 90%; 
+}
+
+.request-modal-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.request-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background-color: #f9fafb;
+  color: #374151;
+}
+
+.textarea-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background-color: #f9fafb;
+  color: #374151;
+  height: 100px;
+}
