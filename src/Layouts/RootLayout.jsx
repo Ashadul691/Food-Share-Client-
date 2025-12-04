@@ -10,9 +10,7 @@ const RootLayout = () => {
     return (
         <div className="min-h-screen bg-gray-50">
             <Navbar />
-            {/* <main> */}
-                {state === "loading" ? <LoadingPage /> : <Outlet />}
-            {/* </main> */}
+                {state === "loading" ? <LoadingPage /> : <Outlet />}    
             <Footer/>
             <ToastContainer />
         </div>

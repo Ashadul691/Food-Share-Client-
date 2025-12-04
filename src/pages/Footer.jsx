@@ -3,10 +3,10 @@ import { FaFacebookF, FaGithub, FaXTwitter } from "react-icons/fa6";
 const Footer = () => {
   return (
     <footer className="bg-[#f3f4f6] text-base-content mt-10">
-      {/* Top Section */}
+     
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
 
-        {/* Brand */}
+        
         <div>
           <h2 className="text-3xl font-bold text-[#8fbf5b] henny-penny-regular">
             Food Share
@@ -17,7 +17,7 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Services */}
+       
         <div>
           <h3 className="footer-title text-lg mb-4 text-[#3b3b3b] font-semibold">
             Services
@@ -30,7 +30,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Company */}
+        
         <div>
           <h3 className="footer-title text-lg mb-4 text-[#3b3b3b] font-semibold">
             Company
@@ -43,7 +43,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Legal */}
+        
         <div>
           <h3 className="footer-title text-lg mb-4 text-[#3b3b3b] font-semibold">
             Legal
@@ -57,18 +57,18 @@ const Footer = () => {
 
       </div>
 
-      {/* Bottom Section */}
+      
       <div className="border-t border-gray-300">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between">
           
-          {/* Left - Copyright */}
+          
           <p className="text-gray-600 text-sm">
             © {new Date().getFullYear()} Food Share— All rights reserved.
           </p>
 
-          {/* Social Icons */}
+        
           <div className="flex gap-4 mt-4 md:mt-0">
-            {/* Facebook */}
+            
             <a
               href="https://www.facebook.com/ashadul.islam.rafi.2025/"
               target="_blank"
@@ -78,7 +78,7 @@ const Footer = () => {
               <FaFacebookF size={18} />
             </a>
 
-            {/* GitHub */}
+           
             <a
               href="https://github.com/Ashadul691"
               target="_blank"
@@ -88,7 +88,7 @@ const Footer = () => {
               <FaGithub size={18} />
             </a>
 
-            {/* X (Twitter) */}
+            
             <a
               href="https://x.com/ashadul691"
               target="_blank"

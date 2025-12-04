@@ -10,6 +10,7 @@ import MyFoodRequest from '../components/MyFoodRequest';
 import RootLayout from "../Layouts/RootLayout";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
+import MyProfile from "../pages/Myprofile";
 import PrivateRoute from "../Provider/PrivateRoute";
 export const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ export const router = createBrowserRouter([
         index: true, 
         element: <Home />,
         errorElement: <ErrorPage />,
-        loader: () => fetch('http://localhost:5000/foods'),
+        loader: () => fetch('https://food-share-server-two.vercel.app/foods').then(res => res.json()),
       },
 
  {
@@ -37,22 +38,21 @@ export const router = createBrowserRouter([
         path: '/AvailableFoods',
         element: <AvailableFoods></AvailableFoods>,
         errorElement: <ErrorPage />,
-        loader: () => fetch('http://localhost:5000/foods'),
+        loader: () => fetch('https://food-share-server-two.vercel.app/foods').then(res => res.json()),
       },
 
+      
       {
-        path: '/ManageFoods/:email',
-        element: (
-          <PrivateRoute>
-            <ManageFoods></ManageFoods>
-          </PrivateRoute>
-        ),
+        path: '/FoodDetails/:id',
+        element: <PrivateRoute><FoodDetails /></PrivateRoute>,
         errorElement: <ErrorPage />,
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:5000/foods/email/${params.email}`
-          ),
+          fetch(`https://food-share-server-two.vercel.app/foods/${params.id}`).then(res => res.json())
       },
+      {path: '/ManageFoods/:email',
+      element: <PrivateRoute><ManageFoods /></PrivateRoute>,
+      errorElement: <ErrorPage />},
+
       {
         path: '/MyFoodRequest/:email',
         element: (
@@ -61,22 +61,8 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         errorElement: <ErrorPage />,
-        loader: ({ params }) =>
-          fetch(
-            `http://localhost:5000/foods/requested/${params.email}`
-          ),
       },
-      {
-        path: '/FoodDetails/:id',
-        element: (
-          <PrivateRoute>
-            <FoodDetails></FoodDetails>
-          </PrivateRoute>
-        ),
-        errorElement: <ErrorPage />,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/foods/${params.id}`),
-      },
+     
 
 
  
@@ -90,7 +76,10 @@ export const router = createBrowserRouter([
       { path: "signup", element: <SignUp /> },
     ],
   },
-  
+  {
+    path:"/profile",
+    element:<MyProfile/>
+  },
    { 
     path: "/*", 
     element: <ErrorPage/> 

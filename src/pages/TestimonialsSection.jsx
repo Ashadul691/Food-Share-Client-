@@ -1,30 +1,32 @@
+import asif12 from "../assets/Asif12.jpg";
+import rafi2 from "../assets/rafi2.jpg";
+import rafi1 from "../assets/rafi1.jpg";
+
 const TestimonialsSection = () => {
   const testimonials = [
     {
       id: 1,
-      name: 'Ashadul Islam',
-      image:
-        'httpss://img.freepik.com/premium-photo/happy-man-ai-generated-portrait-user-profile_1119669-1.jpg',
+      name: 'Asiful Islam',
+      image: asif12,
       feedback:
         'This platform has made it incredibly easy for me to donate food and help those in need. Highly recommended!',
-      location: 'Chittagong,Bangladesh',
+      location: 'Chittagong, Bangladesh',
     },
     {
       id: 2,
-      name: 'Ashraful Islam',
-      image:
-        'httpss://assets.mobileworldlive.com/wp-content/uploads/2015/10/16130048/Dorsey-iamge.png',
+      name: 'Ashadul Islam',
+      image: rafi1,
       feedback:
         'I’ve been able to receive fresh food whenever I needed it. This initiative is a blessing!',
-      location: 'Halishahar ,Chittagong',
+      location: 'Halishahar, Chittagong',
     },
     {
       id: 3,
-      name: 'Nusrat Jahan', 
-      image: 'httpss://nanny.org/wp-content/uploads/2021/11/profile-square.jpeg',
+      name: 'Rafi',
+      image: rafi2,
       feedback:
         'The process is seamless and efficient. Kudos to the team for creating this amazing platform.',
-      location: 'Port,Chittagong',
+      location: 'Port, Chittagong',
     },
   ];
 

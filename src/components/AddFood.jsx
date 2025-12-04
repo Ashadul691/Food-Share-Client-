@@ -1,43 +1,61 @@
 import { useContext } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const AddFood = () => {
-  const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  
+  const { user } = useContext(AuthContext);
 
   const handleAddFood = (e) => {
     e.preventDefault();
 
     const form = e.target;
+    
     const foodObj = {
       foodName: form.foodName.value,
       foodImage: form.foodImage.value,
-      foodQuantity: form.foodQuantity.value,
+      foodQuantity: Number(form.foodQuantity.value),
       pickupLocation: form.pickupLocation.value,
       expiredDateTime: form.expiredDateTime.value,
       additionalNotes: form.additionalNotes.value,
       foodStatus: "Available",
       donator: {
-        image: currentUser?.photoURL,
-        name: currentUser?.displayName,
-        email: currentUser?.email,
+        image: user?.photoURL || "https://i.pravatar.cc/150",
+        name: user?.displayName || "Anonymous",
+        email: user?.email, 
       },
     };
 
-    fetch("https://localhost:5000/foods", {
+    
+    fetch("https://food-share-server-two.vercel.app//foods", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(foodObj),
     })
-      .then(() => {
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Failed to add food');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        
         Swal.fire({
           title: "Success!",
           text: "Your food item has been added.",
           icon: "success",
         });
         form.reset();
+        
+        // Navigate to ManageFoods after 1.5 seconds
+        setTimeout(() => {
+          navigate('/ManageFoods/:email');
+        }, 1500);
       })
-      .catch(() => {
+      .catch((error) => {
+        
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -51,6 +69,9 @@ const AddFood = () => {
       <h1 className="text-4xl font-bold text-center mb-10">
         Add New <span className="text-[#89b758]">Food Item</span>
       </h1>
+
+      
+      
 
       {/* Form Card */}
       <div className="bg-white shadow-xl rounded-2xl p-8 border border-gray-200">
@@ -87,6 +108,7 @@ const AddFood = () => {
               type="number"
               name="foodQuantity"
               required
+              min="1"
               placeholder="Enter number of servings"
               className="input input-bordered w-full"
             />
@@ -111,6 +133,7 @@ const AddFood = () => {
               type="date"
               name="expiredDateTime"
               required
+              min={new Date().toISOString().split('T')[0]}
               className="input input-bordered w-full"
             />
           </div>

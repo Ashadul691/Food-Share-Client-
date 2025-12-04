@@ -1,11 +1,30 @@
-import { useLoaderData } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const MyFoodRequest = () => {
-  const foods = useLoaderData();
-  
-  // Handle undefined or null data
-  if (!foods || !Array.isArray(foods)) {
-    return <div className="text-center mt-20">Loading food requests...</div>;
+  const { user } = useContext(AuthContext);
+  const [foods, setFoods] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user?.email) {
+      console.log('Fetching requested foods for:', user.email);
+      fetch(`https://food-share-server-two.vercel.app/foods/requested/${user.email}`)
+        .then(res => res.json())
+        .then(data => {
+          console.log('Fetched requested foods:', data);
+          setFoods(data);
+          setLoading(false);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          setLoading(false);
+        });
+    }
+  }, [user?.email]);
+
+  if (loading) {
+    return <div className="text-center mt-20">Loading your food requests...</div>;
   }
 
   return (

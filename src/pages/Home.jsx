@@ -7,7 +7,7 @@ import HowitWorks from './HowitWorks';
 const Home = () => {
   const loadedFoods = useLoaderData();
   
-  // Add null/undefined check
+  
   if (!loadedFoods || !Array.isArray(loadedFoods)) {
     return <div className="text-center mt-20">Loading foods...</div>;
   }

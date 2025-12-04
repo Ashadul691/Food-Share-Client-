@@ -4,6 +4,12 @@ import { AuthContext } from '../Provider/AuthProvider';
 import { Menu, X, Wallet, LogOut, User, Home, FileText, UserCircle, Users } from 'lucide-react';
 import Swal from 'sweetalert2';
 import userimg from '../assets/user.png';
+import { MdRestaurantMenu } from "react-icons/md"
+import { GiForkKnifeSpoon } from "react-icons/gi";
+
+import { FaPlusCircle } from "react-icons/fa"; 
+import { GiMeal } from "react-icons/gi";       
+import { MdOutlineFoodBank } from "react-icons/md"; 
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, logOut } = useContext(AuthContext);
@@ -48,14 +54,14 @@ const Navbar = () => {
  
   const navItems = [
     { to: '/', label: 'Home', icon: Home },
-    {to:'/AvailableFoods', label: 'Available Foods', icon: Users },
-    { to: '/AddFood', label: 'Add Food', icon: FileText },
+    {to:'/AvailableFoods', label: 'Available Foods', icon: MdRestaurantMenu  },
+    { to: '/AddFood', label: 'Add Food', icon: FaPlusCircle },
   ];
 
   if (user) {
     navItems.push(
-      { to: `/ManageFoods/${user.email}`, label: 'Manage Foods', icon: FileText },
-      { to: `/MyFoodRequest/${user.email}`, label: 'Request Foods', icon: UserCircle }
+      { to: `/ManageFoods/${user.email}`, label: 'Manage Foods', icon: GiMeal },
+      { to: `/MyFoodRequest/${user.email}`, label: 'Request Foods', icon: MdOutlineFoodBank }
     );
   }
 
@@ -67,7 +73,8 @@ const Navbar = () => {
          
           <Link to="/" className="flex items-center gap-2 group">
             <div className="w-10 h-10 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-lg flex items-center justify-center transform group-hover:scale-110 transition-transform">
-              <Wallet className="w-6 h-6 text-white" />
+              
+              <GiForkKnifeSpoon className="text-white text-2xl"/>
             </div>
             <h1 className="font-extrabold text-3xl sm:text-4xl bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">
               Food Share
