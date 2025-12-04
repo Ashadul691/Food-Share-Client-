@@ -34,8 +34,11 @@ const SignUp = () => {
       });
 
       Swal.fire("Success!", "Account created successfully", "success");
-
-      navigate("/auth/signin");
+      
+    
+      setTimeout(() => {
+        navigate('/');
+      }, 500);
     } catch (err) {
       Swal.fire("Error", err.message, "error");
     }
@@ -45,7 +48,9 @@ const SignUp = () => {
     loginWithGoogle()
       .then(() => {
         Swal.fire("Success!", "Signed up with Google", "success");
-        navigate("/");
+        setTimeout(() => {
+          navigate("/");
+        }, 500);
       })
       .catch(() => Swal.fire("Error", "Google signup failed", "error"));
   };

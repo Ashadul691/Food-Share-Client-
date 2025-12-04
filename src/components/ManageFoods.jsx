@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from "../Provider/AuthProvider";
 
@@ -38,13 +39,13 @@ const ManageFoods = () => {
           
           setFoods(data);
         } catch (error) {
-          console.error('❌ Error fetching foods:', error);
+          console.error(' Error fetching foods:', error);
           Swal.fire('Error', 'Failed to fetch foods', 'error');
         } finally {
           setLoading(false);
         }
       } else {
-        console.log('❌ No user email found');
+        console.log(' No user email found');
         setLoading(false);
       }
     };
@@ -173,12 +174,12 @@ const ManageFoods = () => {
       {foods.length === 0 ? (
         <div className="text-center py-20 bg-gray-50 rounded-lg">
           <p className="text-xl text-gray-500 mb-4">You haven't added any foods yet</p>
-          <a 
-            href="/add-food" 
+          <Link 
+            to="/AddFood" 
             className="btn bg-[#89b758] text-white px-6 py-2 hover:bg-[#7ba84f]"
           >
             Add Your First Food
-          </a>
+          </Link>
         </div>
       ) : (
         <div className="overflow-x-auto">
